@@ -1,0 +1,59 @@
+CC=gcc
+TARGET=liblguicore
+OBJS=blockheap.o \
+	 bmp.o \
+	 cliparea.o \
+	 framebuffer.o \
+	 gdi.o \
+	 hdc.o \
+	 invarea.o \
+	 ipcmsg.o \
+	 keyboard.o \
+	 keyboard_nor.o \
+	 message.o \
+	 mouse.o \
+	 mouse_ps2.o \
+	 rect.o \
+	 regclass.o \
+	 semaphore.o \
+	 shmem.o \
+	 signal.o \
+	 system.o \
+	 text.o \
+	 winbase.o \
+	 window.o 
+	 lgui.o 
+HDRS=common.h \
+	 blockheap.h \
+	 bmp.h \
+     cliparea.h \
+	 framebuffer.h \
+	 gdi.h \
+	 hdc.h \
+	 invarea.h \
+	 ipcmsg.h \
+	 keyboard.h \
+	 keyboard_nor.h \
+	 lguivar.h \
+	 message.h \
+	 mouse.h \
+	 mouse_ps2.h \
+	 rect.h \
+	 regclass.h \
+	 semaphore.h \
+	 shmem.h \
+	 signal.h \
+	 system.h \
+	 text.h \
+	 winbase.h \
+	 window.h
+
+%.o:%.c $(HDRS)
+	$(CC) -g -c  $< -o $@
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) -o lgui $(OBJS)  -lpthread -lm 
+clean:
+	-rm -f *.o
